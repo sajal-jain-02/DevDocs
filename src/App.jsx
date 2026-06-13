@@ -1,14 +1,13 @@
-import React from 'react'
 import Dashboard from "./pages/Dashboard.jsx";
-import Notes from "./pages/Notes.jsx";
-import Snippets from "./pages/Snippets.jsx";
-import Tags from "./pages/Tags.jsx";
-import CreateNotes from "./pages/CreateNotes.jsx";
-import CreateSnippets from "./pages/CreateSnippets.jsx";
-import TagsView from "./pages/TagsView.jsx"
+import Notes from "./pages/notes/Notes.jsx";
+import Snippets from "./pages/snippets/Snippets.jsx";
+import Tags from "./pages/tags/Tags.jsx";
+import CreateNotes from "./pages/notes/CreateNotes.jsx";
+import CreateSnippets from "./pages/snippets/CreateSnippets.jsx";
+import TagsView from "./pages/tags/TagsView.jsx";
 import SearchResult from "./pages/SearchResult.jsx"
-import NoteDetails from "./pages/NoteDetails.jsx"
-import SnippetDetails from "./pages/SnippetDetails.jsx"
+import NoteDetails from "./pages/notes/NoteDetails.jsx"
+import SnippetDetails from "./pages/snippets/SnippetDetails.jsx"
 import Layout from './components/Layout.jsx';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 

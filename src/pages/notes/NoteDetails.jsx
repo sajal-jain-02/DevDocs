@@ -1,17 +1,17 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import notes from '../data/notes.jsx'
-import NotesHeader from '../components/NotesHeader.jsx'
+import notes from '../../data/notes.jsx'
+import NotesHeader from '../../components/NotesHeader.jsx'
 import ReactMarkdown from 'react-markdown'
 
 const NoteDetails = () => {
   const { id } = useParams()
   const note = notes.find(note => note.id === id)
+  
   return (
   <>
     <NotesHeader />
 
-    {/* Back Button */}
     <div className="mb-6 pt-4">
       <button
         onClick={() => window.history.back()}
@@ -21,15 +21,12 @@ const NoteDetails = () => {
       </button>
     </div>
 
-    {/* Note Container */}
     <div className="bg-gray-900 border border-gray-800 rounded-xl p-8">
       
-      {/* Title */}
       <h1 className="text-4xl font-bold text-white mb-4">
         {note.title}
       </h1>
 
-      {/* Tags */}
       <div className="flex flex-wrap gap-2 mb-8">
         {note.tags.map((tag, index) => (
           <span
@@ -41,10 +38,11 @@ const NoteDetails = () => {
         ))}
       </div>
 
-      {/* Divider */}
-      <div className="border-b border-gray-800 mb-8"></div>
+      <div className="border-b border-gray-800 mb-8">
+        <h2 className="text-2xl font-bold text-white mb-2">Description</h2>
+        <p className="text-gray-400 text-lg font-medium">{note.description}</p>
+      </div>
 
-      {/* Markdown Content */}
       <div className="prose prose-invert max-w-none
         prose-headings:text-white
         prose-p:text-gray-300

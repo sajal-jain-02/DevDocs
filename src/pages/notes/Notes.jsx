@@ -1,7 +1,7 @@
 import React from 'react'
-import notes from '../data/notes.jsx'
-import NoteCard from "../components/NoteCard.jsx"
-import NotesHeader from '../components/NotesHeader.jsx'
+import notes from '../../data/notes.jsx'
+import NoteCard from "../../components/NoteCard.jsx"
+import NotesHeader from '../../components/NotesHeader.jsx'
 
 
 const Notes = () => {
