@@ -1,4 +1,3 @@
-import React from 'react'
 import { useParams } from 'react-router-dom'
 import notes from '../../data/notes.jsx'
 import NotesHeader from '../../components/NotesHeader.jsx'
@@ -21,13 +20,18 @@ const NoteDetails = () => {
       </button>
     </div>
 
-    <div className="bg-gray-900 border border-gray-800 rounded-xl p-8">
+    <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 mx-12">
       
-      <h1 className="text-4xl font-bold text-white mb-4">
+      <h1 className="text-3xl font-bold text-white mb-4">
         {note.title}
       </h1>
 
-      <div className="flex flex-wrap gap-2 mb-8">
+      <div className="border-gray-800 mb-4">
+        <p className="text-gray-400 text-lg font-medium leading-relaxed">{note.description}</p>
+      </div>
+
+
+      <div className="flex flex-wrap gap-2 mb-8 border-b-2 border-gray-700 pb-6">
         {note.tags.map((tag, index) => (
           <span
             key={index}
@@ -38,12 +42,7 @@ const NoteDetails = () => {
         ))}
       </div>
 
-      <div className="border-b border-gray-800 mb-8">
-        <h2 className="text-2xl font-bold text-white mb-2">Description</h2>
-        <p className="text-gray-400 text-lg font-medium">{note.description}</p>
-      </div>
-
-      <div className="prose prose-invert max-w-none
+      <div className="prose prose-invert max-w-none 
         prose-headings:text-white
         prose-p:text-gray-300
         prose-strong:text-white

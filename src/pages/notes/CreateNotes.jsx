@@ -1,16 +1,73 @@
-import React from 'react'
+
+import { useState } from "react"
+import { IoClose, IoArrowBack, IoSave, IoAdd } from "react-icons/io5"
+import { useNavigate } from "react-router-dom"
 
 const CreateNotes = () => {
+  const [title, setTitle] = useState('')
+  const [description, setDescription] = useState('')
+  const [tags, setTags] = useState([])
+  const [tagInput, setTagInput] = useState('')
+  const [content, setContent] = useState('')
+  const [error , setError] = useState({})
+
+  const navigate = useNavigate()
+
+  const handleAddTag = () => {
+    if(tagInput.trim() === '') return;
+    if(tags.includes(tagInput)) return;
+    setTags([...tags, tagInput])
+    setTagInput('')
+  }
+
+  const handleDeleteTag = (index) => {
+    setTags(tags.filter((_, i) => i !== index))
+  }
+
+  const handleCancel = () => {
+    navigate('/notes')
+  }
+
+  const handleBack = () => {
+    navigate(-1)
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newError ={}
+
+    if(title.trim() === ''){
+      newError.title = 'Title is required'
+    }
+
+    if(description.trim() === ''){
+      newError.description = 'Description is required'
+    }
+
+    if(tags.length === 0){
+      newError.tags = 'Tags is required'
+    }
+    setError(newError)
+    Object.keys(newError).length === 0 ? console.log('Validation passed') : console.log('Validation failed')
+  }
+
   return (
     <div>
       <div className='pt-6 mb-8 border-b border-white'>
-        <button className='text-xl font-bold cursor-pointer'> ← Back</button>
+        <button
+         onClick={handleBack}
+         className='flex items-center gap-2 text-xl font-bold cursor-pointer'>
+         < IoArrowBack />
+         Back
+        </button>
       </div>
+
       <div>
         <h1 className='text-3xl font-bold mb-4'>Create Notes</h1>
       </div>
+
       <div className='h-auto flex flex-col items-start justify-center p-4 rounded-lg'>
-        <form className='w-full'>
+        <form className='w-full' onSubmit={handleSubmit}>
           <label className='text-2xl block mb-2'>
             Title
             <span className='text-red-500'>*</span>
@@ -18,7 +75,20 @@ const CreateNotes = () => {
           <input 
           className='w-full border border-gray-300 bg-gray-900 rounded p-2 mb-4'
           type="text" 
-          placeholder='Enter title' />
+          placeholder='Enter title' 
+          value={title}
+          onChange={(e) => setTitle(e.target.value)} 
+          onKeyDown={(e) => {
+            if(e.key === "Enter"){
+              e.preventDefault();
+            }
+          }} />
+          {
+            error.title &&(
+            <p className='text-red-500 p-2 rounded-sm'>
+              {error.title}
+            </p>)
+          }
 
           <label className='text-2xl block mb-2'>
             Description
@@ -27,20 +97,64 @@ const CreateNotes = () => {
           <input 
           className='w-full border border-gray-300 bg-gray-900 rounded p-2 mb-4'
           type="text" 
-          placeholder='Enter description' />
+          placeholder='Enter description' 
+          value={description}
+          onChange={(e) => setDescription(e.target.value)} 
+           onKeyDown={(e) => {
+            if(e.key === "Enter"){
+              e.preventDefault();
+            }
+          }} />
+          {
+            error.description &&(
+            <p className='text-red-500 p-2 rounded-sm'>
+              {error.description}
+            </p>)
+          }
 
           <label className='text-2xl block mb-2'>
             Tags
+            <span className='text-red-500'>*</span>
           </label>
-          <input 
-          className='w-fit border border-gray-300 bg-gray-900 rounded p-2 mb-4 mr-4'
-          type="text" 
-          placeholder='Enter tags' />
-          <button 
-          className='bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 transition-colors'
-          type='button'>
-            Add Tags
-          </button>
+          <div className="flex items-center gap-2">
+            <input 
+            className='w-fit border border-gray-300 bg-gray-900 rounded p-2'
+            type="text" 
+            placeholder='Enter tags'
+            value={tagInput}
+            onChange={(e) => setTagInput(e.target.value)}
+            onKeyDown={(e) => {
+              if(e.key === "Enter"){
+                e.preventDefault();
+                handleAddTag();
+              }
+            }} />
+            
+            <button 
+            className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800 transition-colors"
+            type='button'
+            onClick={handleAddTag}>
+              <IoAdd className='text-xl' />
+              Add Tags
+            </button>
+          </div>
+          {
+            error.tags &&(
+            <p className='text-red-500 p-2 rounded-sm'>
+              {error.tags}
+            </p>)
+          }
+
+          <div className="flex flex-row mb-8 mt-4">
+            {tags.map((tag , index) => (
+              <span key={index} className="flex flex-wrap items-center bg-gray-900 rounded-full pt-1 pb-1 pl-4 pr-2 mr-2">
+                {tag}
+                <IoClose 
+                  className="cursor-pointer hover:text-red-400 ml-2"
+                  onClick={() => handleDeleteTag(index)}/>
+              </span>
+            ))}
+          </div>
 
           <label className='text-2xl block mb-2'>
             Content
@@ -48,16 +162,21 @@ const CreateNotes = () => {
           <textarea 
           name="content" 
           id="content" 
-          className='w-full h-[350px] border border-gray-300 bg-gray-900 rounded p-2 mb-4'
-          placeholder='Enter your content here...'>
-          </textarea>
+          className='w-full h-87.5 border border-gray-300 bg-gray-900 rounded p-2 mb-4'
+          placeholder='Enter your content here...'
+          value={content}
+          onChange={(e) => setContent(e.target.value)} />
           <div className='flex justify-end gap-4'>
-            <button className='bg-red-600 text-white px-4 py-2 rounded mt-4 hover:bg-red-800 transition-colors'>
+            <button 
+            type='button'
+            onClick={handleCancel}
+            className='bg-red-600 text-white px-4 py-2 rounded mt-4 hover:bg-red-800 transition-colors'>
               Cancel
             </button>
 
             <button 
-            className='bg-green-800 text-white px-4 py-2 rounded mt-4 hover:bg-green-900 transition-colors'>
+              className='bg-green-800 text-white px-4 py-2 rounded mt-4 hover:bg-green-900 transition-colors flex items-center gap-2'>
+              <IoSave />
               Save Note
             </button>
           </div>
