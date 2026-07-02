@@ -1,20 +1,39 @@
-import { useParams } from 'react-router-dom'
-import notes from '../../data/notes.jsx'
+import { useParams, useNavigate } from 'react-router-dom'
 import NotesHeader from '../../components/NotesHeader.jsx'
 import ReactMarkdown from 'react-markdown'
+import { getAllNotes } from '../../services/noteService.js'
 
 const NoteDetails = () => {
   const { id } = useParams()
+  const notes =getAllNotes()
   const note = notes.find(note => note.id === id)
+  const navigate = useNavigate()
   
+
+  if (!note) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-[60vh]">
+        <h1 className="text-4xl font-bold text-red-500 mb-6">
+          Note not found !!!
+        </h1>
+
+        <button
+          onClick={() => navigate('/notes')}
+          className="flex items-center gap-2 px-4 py-2 mt-4 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors cursor-pointer"
+        >
+          ← Back to Notes
+        </button>
+      </div>
+    )
+  }
   return (
   <>
     <NotesHeader />
 
     <div className="mb-6 pt-4">
       <button
-        onClick={() => window.history.back()}
-        className="text-gray-400 hover:text-white transition-colors cursor-pointer"
+        onClick={() => navigate('/notes')}
+        className="text-gray-400 hover:text-white transition-all duration-200 cursor-pointer"
       >
         ← Back to Notes
       </button>

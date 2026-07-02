@@ -1,10 +1,15 @@
-import React from 'react'
-import notes from '../../data/notes.jsx'
+import { useState } from 'react'
 import NoteCard from "../../components/NoteCard.jsx"
 import NotesHeader from '../../components/NotesHeader.jsx'
+import { getAllNotes, deleteNote } from '../../services/noteService.js'
 
 
 const Notes = () => {
+  const [notes, setNotes] = useState(getAllNotes())
+  const handleDelete = (id) => {
+    deleteNote(id)
+    setNotes(notes.filter(note => note.id !== id))
+  }
 
   return (
     <>
@@ -18,6 +23,7 @@ const Notes = () => {
             description={note.description}
             title={note.title} 
             tags={note.tags} 
+            onDelete={handleDelete}
           />
         ))
       }

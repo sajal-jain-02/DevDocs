@@ -9,6 +9,7 @@ import SearchResult from "./pages/SearchResult.jsx"
 import NoteDetails from "./pages/notes/NoteDetails.jsx"
 import SnippetDetails from "./pages/snippets/SnippetDetails.jsx"
 import Layout from './components/Layout.jsx';
+import EditNotes from "./pages/notes/EditNotes.jsx";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
 const App = () => {
@@ -20,6 +21,7 @@ const App = () => {
           <Route path='/notes' element={<Notes />} />
           <Route path='/notes/new' element={<CreateNotes />} />
           <Route path='/notes/:id' element={<NoteDetails />} />
+          <Route path='/notes/:id/edit' element={<EditNotes />} />
           <Route path='/snippets' element={<Snippets />} />
           <Route path='/snippets/new' element={<CreateSnippets />} />
           <Route path='/snippets/:id' element={<SnippetDetails />} />
