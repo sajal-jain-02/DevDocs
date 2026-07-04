@@ -1,21 +1,52 @@
 import { useNavigate } from 'react-router-dom'
+import { IoSearch , IoClose } from 'react-icons/io5'
 
-const NotesHeader = () => {
+const NotesHeader = ({ searchTerm, setSearchTerm }) => {
 
   const navigate = useNavigate()
+
   const handleAddNote = () => {
     navigate('/notes/new')
   }
-  
+
   return (
-    <div className='flex items-center justify-between mb-6 py-4 px-4  border-b-2 border-gray-800'>
-        <div className='text-2xl font-bold'>Notes</div>
-        <div className='flex gap-3 items-center'>
-            <input type="text" placeholder="Search notes..." className='w-72 h-8 px-1 border-none outline-none bg-white text-gray-800 border-gray-300 rounded-sm'/>
-            <button onClick={handleAddNote} className='px-4 py-2 bg-purple-600 rounded-lg hover:bg-purple-900 cursor-pointer transition duration-200 ease-in-out' >
-                Add Note
+    <div className='flex items-center justify-between mb-6 py-4 px-4 border-b border-gray-800'>
+
+      <h1 className='text-3xl font-bold text-white'>
+        Notes
+      </h1>
+
+      <div className='flex items-center gap-4'>
+
+        <div className="relative">
+          <IoSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-500 text-lg" />
+
+          <input
+            type="text"
+            placeholder="Search notes..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-80 h-11 pl-11 pr-11 bg-gray-900 border border-gray-700 rounded-xl text-white placeholder:text-gray-500 focus:outline-none focus:border-purple-500 focus:ring-2 focus:ring-purple-500/20 transition-all duration-200"
+          />
+
+          {searchTerm && (
+            <button
+              onClick={() => setSearchTerm("")}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 hover:text-white transition-colors cursor-pointer"
+            >
+              <IoClose size={18} />
             </button>
+          )}
         </div>
+
+        <button
+          onClick={handleAddNote}
+          className='h-11 px-5 bg-purple-600 rounded-xl font-medium text-white hover:bg-purple-700 active:scale-95 transition-all duration-200 cursor-pointer'
+        >
+          + Add Note
+        </button>
+
+      </div>
     </div>
   )
 }
