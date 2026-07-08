@@ -2,9 +2,8 @@ import { useState } from "react"
 import { IoArrowBack } from "react-icons/io5"
 import { useNavigate } from "react-router-dom"
 import { saveNote } from "../../services/noteService"
-import NotesForm from "../../components/NotesForm"
+import NotesForm from "../../components/Notes/NotesForm"
 import toast from "react-hot-toast"
-import { Toaster } from "react-hot-toast"
 
 const CreateNotes = () => {
   const [title, setTitle] = useState('')
@@ -13,7 +12,6 @@ const CreateNotes = () => {
   const [tagInput, setTagInput] = useState('')
   const [content, setContent] = useState('')
   const [error , setError] = useState({})
-  const [success, setSuccess] = useState(false)
 
   const navigate = useNavigate()
 

@@ -1,16 +1,12 @@
 import { useState } from 'react'
-import NoteCard from "../../components/NoteCard.jsx"
-import NotesHeader from '../../components/NotesHeader.jsx'
+import NoteCard from "../../components/Notes/NoteCard.jsx"
+import NotesHeader from '../../components/Notes/NotesHeader.jsx'
 import { getAllNotes, deleteNote } from '../../services/noteService.js'
 
 
 const Notes = () => {
   const [notes, setNotes] = useState(getAllNotes())
   const [searchTerm, setSearchTerm] = useState('')
-  const handleDelete = (id) => {
-    deleteNote(id)
-    setNotes(notes.filter(note => note.id !== id))
-  }
 
   const filteredNotes = notes.filter(note => 
     note.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -33,7 +29,6 @@ const Notes = () => {
             description={note.description}
             title={note.title} 
             tags={note.tags} 
-            onDelete={handleDelete}
             searchTerm={searchTerm}
           />
         ))

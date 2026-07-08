@@ -1,15 +1,24 @@
 import { useParams, useNavigate } from 'react-router-dom'
-import NotesHeader from '../../components/NotesHeader.jsx'
 import ReactMarkdown from 'react-markdown'
-import { getAllNotes } from '../../services/noteService.js'
+import { getAllNotes, deleteNote } from '../../services/noteService.js'
+import { PiPushPinFill } from "react-icons/pi";
+import { FiEdit } from "react-icons/fi";
+import { RiDeleteBin6Fill } from "react-icons/ri";
 
 const NoteDetails = () => {
   const { id } = useParams()
   const notes =getAllNotes()
   const note = notes.find(note => note.id === id)
   const navigate = useNavigate()
-  
 
+  const handleEdit = () => {
+    navigate(`/notes/edit/${id}`)
+  }
+
+  const handleDelete = () => {
+    deleteNote(id)
+    navigate('/notes')
+  }
   if (!note) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
@@ -28,15 +37,33 @@ const NoteDetails = () => {
   }
   return (
   <>
-    <NotesHeader />
 
-    <div className="mb-6 pt-4">
+    <div className="mb-6 pt-4 flex justify-between ">
       <button
         onClick={() => navigate('/notes')}
         className="text-gray-400 hover:text-white transition-all duration-200 cursor-pointer"
       >
         ← Back to Notes
       </button>
+      <div className='flex gap-3 mx-12 '>
+        <button
+         className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-semibold transition-all duration-200 hover:scale-105 active:scale-95">
+          <PiPushPinFill />
+          Pin
+        </button>
+        <button
+         className="flex items-center gap-2 px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
+         onClick={handleEdit}>
+          <FiEdit />
+          Edit
+        </button>
+        <button 
+        className="flex items-center gap-2 px-4 py-2 rounded-xl bg-red-600 hover:bg-red-700 text-white font-semibold transition-all duration-200 hover:scale-105 active:scale-95"
+        onClick={handleDelete}>
+          <RiDeleteBin6Fill />
+          Delete
+        </button>
+      </div>
     </div>
 
     <div className="bg-gray-900 border border-gray-800 rounded-xl p-8 mx-12">

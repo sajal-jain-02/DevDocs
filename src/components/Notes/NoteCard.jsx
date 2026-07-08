@@ -1,7 +1,6 @@
 import { useNavigate } from 'react-router-dom'
-import { RiDeleteBin7Fill } from 'react-icons/ri'
 
-const NoteCard = ({id, title, description, tags, onDelete, searchTerm}) => {
+const NoteCard = ({id, title, description, tags, searchTerm}) => {
   const navigate = useNavigate()
 
   const handleCardClick = () => {
@@ -25,7 +24,7 @@ const NoteCard = ({id, title, description, tags, onDelete, searchTerm}) => {
       <div>
         <h2 className='text-2xl font-bold'>{highlight(title, searchTerm)}</h2>
       </div>
-      <div>
+      <div className='line-clamp-2'>
         <p>{highlight(description, searchTerm)}</p>
       </div>
       <div className='flex flex-wrap justify-between items-center'>
@@ -44,15 +43,6 @@ const NoteCard = ({id, title, description, tags, onDelete, searchTerm}) => {
             ))
           }
         </p>
-        <button
-          className="p-2 rounded-lg text-gray-400 hover:text-red-500 hover:bg-red-500/10 transition-all duration-200 cursor-pointer"
-          onClick={(e) => {
-            e.stopPropagation()
-            onDelete(id)
-          }}
-        >
-          <RiDeleteBin7Fill className="text-lg" />
-        </button>
       </div>
     </div>
   )

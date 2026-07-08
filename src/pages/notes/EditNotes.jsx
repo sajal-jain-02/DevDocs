@@ -1,9 +1,8 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { getNoteById, updateNote } from '../../services/noteService'
-import NotesForm from '../../components/NotesForm'
+import { getNoteById, updateNote } from '../../services/noteService.js'
+import NotesForm from '../../components/Notes/NotesForm.jsx'
 import toast from 'react-hot-toast'
-import { Toaster } from 'react-hot-toast'
 
 const EditNotes = () => {
   const { id } = useParams()
