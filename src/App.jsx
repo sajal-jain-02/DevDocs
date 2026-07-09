@@ -4,7 +4,7 @@ import Snippets from "./pages/snippets/Snippets.jsx";
 import Tags from "./pages/tags/Tags.jsx";
 import CreateNotes from "./pages/notes/CreateNotes.jsx";
 import CreateSnippets from "./pages/snippets/CreateSnippets.jsx";
-import TagsView from "./pages/tags/TagsView.jsx";
+import TagsDetails from "./pages/tags/TagsDetails.jsx";
 import SearchResult from "./pages/SearchResult.jsx"
 import NoteDetails from "./pages/notes/NoteDetails.jsx"
 import SnippetDetails from "./pages/snippets/SnippetDetails.jsx"
@@ -28,7 +28,7 @@ const App = () => {
           <Route path='/snippets/:id' element={<SnippetDetails />} />
           <Route path="/snippets/edit/:id" element={<EditSnippet />} />
           <Route path='/tags' element={<Tags />} />
-          <Route path='/tags/:name' element={<TagsView />} />
+          <Route path='/tags/:name' element={<TagsDetails />} />
           <Route path='/search' element={<SearchResult />} />
 
         </Route>

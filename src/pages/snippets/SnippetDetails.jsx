@@ -30,6 +30,10 @@ const SnippetDetails = () => {
       toast.error('Failed to copy code')
     }
   }
+
+  const handleBack = () => {
+    navigate(window.history.back())
+  }
   if (!snippet) {
     return (
       <div className="flex flex-col items-center justify-center min-h-[60vh]">
@@ -38,7 +42,7 @@ const SnippetDetails = () => {
         </h1>
 
         <button
-          onClick={() => navigate('/snippets')}
+          onClick={handleBack}
           className="flex items-center gap-2 px-4 py-2 mt-4 bg-gray-800 border border-gray-700 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-colors cursor-pointer"
         >
           ← Back to Snippets
@@ -50,7 +54,7 @@ const SnippetDetails = () => {
   <>
     <div className="mb-6 pt-4 flex justify-between ">
       <button
-        onClick={() => navigate('/snippets')}
+        onClick={handleBack}
         className="text-gray-400 hover:text-white transition-all duration-200 cursor-pointer"
       >
         ← Back to Snippets

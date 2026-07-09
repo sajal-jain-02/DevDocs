@@ -20,7 +20,7 @@ const NoteCard = ({id, title, description, tags, searchTerm}) => {
   }
 
   return (
-    <div className='flex flex-col place-content-around border-2 border-gray-800 gap-5 rounded-lg p-4 bg-gray-900 cursor-pointer' onClick={handleCardClick}>
+    <div className='flex flex-col place-content-around border-2 border-gray-800 gap-5 rounded-lg p-4 bg-gray-900 cursor-pointer  hover:border-purple-500/50 hover:-translate-y-1 hover:shadow-lg transition-all duration-200 ' onClick={handleCardClick}>
       <div>
         <h2 className='text-2xl font-bold'>{highlight(title, searchTerm)}</h2>
       </div>
