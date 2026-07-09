@@ -20,7 +20,7 @@ const Dashboard = () => {
 
       <section>
         <h2 className="text-xl font-semibold text-white mb-4">Statistics</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <StatCard title="Total Notes" count={notes.length} icon={FiFileText} color="blue" />
           <StatCard title="Total Snippets" count={snippets.length} icon={FiCode} color="purple" />
           <StatCard title="Total Tags" count={tags.length} icon={FiTag} color="green" />
@@ -29,7 +29,7 @@ const Dashboard = () => {
 
       <section>
         <h2 className="text-xl font-semibold text-white mb-4">Quick Actions</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <QuickAction
             title="Create Note"
             description="Add a new note to your collection"
@@ -56,7 +56,7 @@ const Dashboard = () => {
 
       <section>
         <h2 className="text-xl font-semibold text-white mb-4">Recent Notes</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {notes.length === 0 ? (
             <div className="border border-gray-800 rounded-xl p-8 bg-gray-900/50 text-center text-gray-500">
               No notes yet
@@ -78,7 +78,7 @@ const Dashboard = () => {
 
       <section>
         <h2 className="text-xl font-semibold text-white mb-4">Recent Snippets</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {snippets.length === 0 ? (
             <div className="border border-gray-800 rounded-xl p-8 bg-gray-900/50 text-center text-gray-500">
               No snippets yet
@@ -101,7 +101,7 @@ const Dashboard = () => {
 
       <section>
         <h2 className="text-xl font-semibold text-white mb-4">Most Used Tags</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {tags.length === 0 ? (
             <div className="border border-gray-800 rounded-xl p-8 bg-gray-900/50 text-center text-gray-500">
               No tags yet
